@@ -36,7 +36,7 @@ class phpDatabase{
 		     $this->overwrite = $val;
 		  }
 	  }
-	  
+
 	  public function get($var){
 		  if("dir" == $var){
 		     return $this->directory;
@@ -46,23 +46,23 @@ class phpDatabase{
 		  }
 		  if("array" == $var){
 		     return $this->Array;
-		  }	
+		  }
 		  if("database" == $var){
 		     return $this->database;
 		  }
 		  if("overwrite" == $var){
 		     return $this->overwrite;
-		  }	
+		  }
 		  if("return_" == $var){
 		     return $this->return_;
-		  }				  	  
+		  }
 	  }
-	  
+
 	  public function GETBACK(){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
 		  $in = false;
 		  if($this->database != NULL){
@@ -86,13 +86,13 @@ class phpDatabase{
 		  $this->return_ = $Col;
 		  return $Col;
 	  }
-	  
-	  
+
+
 	  public function APPEND($val2,$val1){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
 		  $in = false;
 		  if($this->database != NULL){
@@ -109,7 +109,7 @@ class phpDatabase{
 				  $theData = fread($fh, filesize("$ndir$f_n.php"));
 				  fclose($fh);
 			  }
-			  $theData = trim($theData);	  
+			  $theData = trim($theData);
 			  $pos = stripos($theData,"$$column = array(");
 			  $pos2 = stripos($theData,"$");
 			  $pos3 = stripos($theData,"?>");
@@ -135,11 +135,11 @@ class phpDatabase{
 							 $v = "\"".$val2."\"=>\"".$val1."\",";
 						 }
 						 $temp = $t.$u.$v;
-						
+
 						 $exp[$j] = "\n \t ".trim($temp);
 					 }
 				 }
-				 
+
 				 $ch = implode(");",$exp);
 				 if($index == NULL){
 				   //$ch = substr($ch,1);
@@ -149,7 +149,7 @@ class phpDatabase{
 					$ch = $ch.");";
 				 }
 				 //*write updated file
-				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 				 $txt = "<?php \n";
 				 fwrite($myfile, $txt);
 				 $txt = "\t $ch";
@@ -162,12 +162,12 @@ class phpDatabase{
 			  }
 		  }
 	  }
-	  
+
 	  public function CHANGE($val1, $val2, $index){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
 		  $in = false;
 		  if($this->database != NULL){
@@ -179,13 +179,13 @@ class phpDatabase{
 		  $column = $this->Array;
 		  $fun = "w";
 		  if($val2 == NULL){
-			 $val2 = 0;  
+			 $val2 = 0;
 		  }
 		  if($val1 != NULL){
 		  $fh = fopen("$ndir$f_n.php", 'r');
 		  $theData = fread($fh, filesize("$ndir$f_n.php"));
 		  fclose($fh);
-		  $theData = trim($theData);	  
+		  $theData = trim($theData);
 		  $pos = stripos($theData,"$$column = array(");
 		  $pos2 = stripos($theData,"$");
 		  $pos3 = stripos($theData,"?>");
@@ -198,7 +198,7 @@ class phpDatabase{
 			 include("$ndir$f_n.php");
 			 //require(dirname(__FILE__)."/$ndir$f_n.php");
 			 $Col = $$column;
-			 
+
 			 for($j = 0; $j < count($exp); $j++){
 				 if(strstr(trim($exp[$j]),"$$column = array(") != NULL){
 					 //change values that match, without consideration for index
@@ -222,8 +222,8 @@ class phpDatabase{
 					 $exp[$j] = "\n \t ".trim($temp);
 				 }
 			 }
-			 print_r($exp);
-			 if($exp[1] != NULL){
+
+			 if($exp[0] != NULL){
 				 $ch = implode(");",$exp);
 				 $ch = trim($ch);
 				 if((strlen("$ch") - strripos("$ch",");")) > 2){
@@ -233,7 +233,7 @@ class phpDatabase{
 					 $ch = str_replace("););",");",$ch);
 				 }
 				 //*write updated file
-				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 				 $txt = "<?php \n";
 				 fwrite($myfile, $txt);
 				 $txt = "\t $ch";
@@ -242,7 +242,7 @@ class phpDatabase{
 				 fwrite($myfile, $txt);
 			 }else{
 				 //*write updated file
-				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+				 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 				 $txt = "<?php \n";
 				 fwrite($myfile, $txt);
 				 $txt = "\t $theData";
@@ -255,7 +255,7 @@ class phpDatabase{
 		  fclose($myfile);
 		  }
 	  }
-	  
+
 	  public static function CHANGEARRAY($ARRAY){
 		  $val = $ARRAY["new"];
 		  $ndir = $ARRAY["database"]."/";
@@ -266,18 +266,18 @@ class phpDatabase{
 		  $fh = fopen("$ndir$f_n.php", 'r');
 		  $theData = fread($fh, filesize("$ndir$f_n.php"));
 		  fclose($fh);
-		  $theData = trim($theData);	  
+		  $theData = trim($theData);
 		  $pos = stripos($theData,"$$column = array(");
 		  $pos2 = stripos($theData,"$");
 		  $theData = trim($theData);
 		  //echo "$ndir$f_n.php<br>$theData<br>$$column = array(<br>";
-		  if($pos > 0){			 
+		  if($pos > 0){
 			 $theData = substr($theData,$pos2,-8);
 			 $theData = trim($theData);
 			 $exp = explode(");",$theData);
-			 
+
 			 for($j = 0; $j < count($exp); $j++){
-				 if(strstr(trim($exp[$j]),"$$column = array(") != NULL){					 
+				 if(strstr(trim($exp[$j]),"$$column = array(") != NULL){
 					 $exp[$j] = str_replace("$$column","$$val",$exp[$j]);
 				 }
 				 //echo $exp[$j]."<br>";
@@ -291,8 +291,8 @@ class phpDatabase{
 			 if((strlen("$ch") - strripos("$ch",");")) > 2){
 				$ch = $ch.");";
 			 }
-			 //*		 
-			 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+			 //*
+			 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 			 $txt = "<?php \n";
 			 fwrite($myfile, $txt);
 			 $txt = "\t $ch";
@@ -301,16 +301,16 @@ class phpDatabase{
 			 fwrite($myfile, $txt);
 			 //*/
 		  }
-		  fclose($myfile);		  
+		  fclose($myfile);
 	  }
-	  
+
 	  public function DELETEARRAY(){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
-		  
+
 		  if($this->database != NULL){
 		     $ndir = "$dir".$this->database."/";
 		  }else{
@@ -319,21 +319,21 @@ class phpDatabase{
 		  $f_n = $this->file_name;
 		  $column = $this->Array;
 		  $fun = "w";
-		  
+
 		  $fh = fopen("$ndir$f_n.php", 'r');
 		  $theData = fread($fh, filesize("$ndir$f_n.php"));
 		  fclose($fh);
-		  $theData = trim($theData);	  
+		  $theData = trim($theData);
 		  $pos = stripos($theData,"$$column = array(");
 		  $pos2 = stripos($theData,"$");
 		  $theData = trim($theData);
-		  
+
 		  if($pos > 0){
-			 
+
 			 $theData = substr($theData,$pos2,-8);
 			 $theData = trim($theData);
 			 $exp = explode(");",$theData);
-			 
+
 			 for($j = 0; $j < count($exp); $j++){
 				 if(strstr(trim($exp[$j]),"$$column = array(") != NULL){
 					 //$exp[$j] = NULL;
@@ -350,9 +350,9 @@ class phpDatabase{
 				$ch = $ch.");";
 			 }
 			 //*
-			 
-			 
-			 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+
+
+			 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 			 $txt = "<?php \n";
 			 fwrite($myfile, $txt);
 			 $txt = "\t $ch";
@@ -362,16 +362,16 @@ class phpDatabase{
 			 //*/
 		  }
 		  fclose($myfile);
-		  
+
 	  }
-	  
+
 	  public function LISTDIR(){
 		  if($this->level == NULL || $this->level == 0){
 			 $ldir = $this->directory."/";
 		  }else{
 			 $ldir = $this->directory."/".$this->database."/";
 		  }
-		  
+
 	      if (is_dir($ldir)){
 			 if ($dh = opendir($ldir)){
 			     $x = 0;
@@ -379,7 +379,7 @@ class phpDatabase{
 				 while (($file = readdir($dh)) !== false){
 					  if($file != ".." && $file != "."){
 						  $exp = explode(".",$file);
-						  if(count($exp) > 1 && $exp[count($exp) - 1] == "php"){ 
+						  if(count($exp) > 1 && $exp[count($exp) - 1] == "php"){
 							 $fh = fopen("$ldir$file", 'r');
 		                     $theData = fread($fh, filesize("$ldir$file"));
 		                     fclose($fh);
@@ -391,7 +391,7 @@ class phpDatabase{
 							 //if(count($exp) == 1){
 						  }elseif(is_dir("$ldir/$file")){
 							//	  echo is_dir($db);
-							  
+
 							  $fd[$i] = $file;
 							  $i++;
 						  }
@@ -404,12 +404,12 @@ class phpDatabase{
 			$this->return_ = array($fl,$fd);
 			return array($fl,$fd);
 	  }
-	  
-	   public function LISTARRAYS(){		   
+
+	   public function LISTARRAYS(){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
 		  $in = false;
 		  if($this->database != NULL){
@@ -423,27 +423,27 @@ class phpDatabase{
 		  $fh = fopen("$ndir$f_n.php", 'r');
 		  $theData = fread($fh, filesize("$ndir$f_n.php"));
 		  fclose($fh);
-		  $theData = trim($theData);	  
+		  $theData = trim($theData);
 		  $theData = substr($theData,0,-8);
 		  $theData = substr($theData,5);
 		  $exp = explode("= array(",$theData);
-		 
+
 		  for($i = 0; $i < count($exp); $i++){
 			 $exp2 = explode(");",$exp[$i]);
 			 $exp3 = explode("=>",$exp2[0]);
 			 if(count($exp2) == 2 && trim($exp2[1]) != NULL && trim($exp2[1]) != " "){
-				$nm[$i] = substr(trim($exp2[1]),1); 
+				$nm[$i] = substr(trim($exp2[1]),1);
 			 }elseif($exp2[0] != NULL && substr_count($exp2[0], "=>") == 0){
 				 $nm[$i] = substr(trim($exp2[0]),1);
 			 }
 			 //*
 			 if(count($exp3) >= 2 && trim($exp3[1]) != NULL && trim($exp3[1]) != " "){
-				$vl[$i] = substr(trim($exp3[1]),1,-2); 
+				$vl[$i] = substr(trim($exp3[1]),1,-2);
 			 }elseif($exp3[0] != NULL && substr_count($exp3[0], "=>") == 0){
 				 //$vl[$i] = substr(trim($exp3[0]),1);
 			 }
 			 //*/
-			 
+
 		  }
 		  include("$ndir$f_n.php");
 		  /*
@@ -452,25 +452,25 @@ class phpDatabase{
 			 require(dirname(__FILE__)."/$ndir$f_n.php");
 		  }
 		  */
-		  
+
 		  for($i = 0; $i < count($nm); $i++){
 			  $column = $nm[$i];
 			  $Col = $$column;
 			  $M[$nm[$i]] = $Col;
 		  }
-		  
-		  $this->return_ = array($nm, $M);		  
+
+		  $this->return_ = array($nm, $M);
 		  fclose($myfile);
 		  return array($nm, $M);
-		  
+
 	  }
-	  
-	  
-	  public function ADD($ARRAY1,$ARRAY2){	  
+
+
+	  public function ADD($ARRAY1,$ARRAY2){
 		  if($this->directory != NULL){
 		     $dir = $this->directory."/";
 		  }else{
-			$dir == "";  
+			$dir == "";
 		  }
 		  $in = false;
 		  if($this->database != NULL){
@@ -506,23 +506,23 @@ class phpDatabase{
 			  closedir($dh);
 			}
 		  }
-		  //reads the file to see if data is to be appended		  
+		  //reads the file to see if data is to be appended
 		  $fh = fopen("$ndir$f_n.php", 'r');
 		  if($fh != NULL){
 		     $theData = fread($fh, filesize("$ndir$f_n.php"));
 			 fclose($fh);
 		  }
-		  
-		  
+
+
 		  $pos = stripos($theData,"$$column = array(");
 		  $fun = "w";
 		  if($this->overwrite != true){
 			  if($theData != NULL){
 				  $theData = trim($theData);
-				  
+
 				  if($pos >= 0 && $pos != NULL){
 					 //If table already found append data
-					 $theData = substr($theData,0,-8);					 
+					 $theData = substr($theData,0,-8);
 				  }else{
 					 //if not found write new data
 					 $theData = substr($theData,0,-8);
@@ -532,17 +532,17 @@ class phpDatabase{
 					 $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 					 $txt = "  $$column = array(";
 					 fwrite($myfile, $txt);
-				  }			  
+				  }
 			  }else{
 				  //if this is a new file
-				  $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+				  $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 				  $txt = "<?php \n";
 				  fwrite($myfile, $txt);
 				  $txt = "  $$column = array(";
 				  fwrite($myfile, $txt);
 			  }
 		  }else{
-			  $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!"); 
+			  $myfile = fopen("$ndir$f_n.php", "$fun") or die("Unable to open file!");
 			  $txt = "<?php \n";
 			  fwrite($myfile, $txt);
 			  $txt = "  $$column = array(";
@@ -561,7 +561,7 @@ class phpDatabase{
 				  $I = $ARRAY1[$i];
 			  }
 			 $v = "\"$I\"=>\"".$ARRAY[$i]."\", ";
-			 if($myfile !== NULL){	
+			 if($myfile !== NULL){
 			    fwrite($myfile, trim($v));
 			 }
 		  }
@@ -569,21 +569,21 @@ class phpDatabase{
 		  if($myfile !== NULL){
 		     fwrite($myfile, $txt);
 		  }
-		 
+
 		  $txt = "//DPDB?> \n";
 		  if($myfile !== NULL){
 			 fwrite($myfile, $txt);
 			 fclose($myfile);
 		  }
 	  }
-	  
+
 	  public static function TRUNCATE($ndir) {
 		  if (!is_dir($ndir)){
 			  unlink($ndir);
-		  }elseif (is_dir($ndir)){	
+		  }elseif (is_dir($ndir)){
 			if ($dh = opendir($ndir)){
 			  while (($file = readdir($dh)) !== false){
-				if($file != ".." && $file != "."){										
+				if($file != ".." && $file != "."){
 					if (is_dir($ndir."/".$file)) {
 						self::TRUNCATE($ndir."/".$file);
 					}else{
@@ -596,10 +596,10 @@ class phpDatabase{
 		  }
 		  rmdir($ndir);
     }
-	
-	public static function NAMEDATABASE($odir,$ndir) {	
+
+	public static function NAMEDATABASE($odir,$ndir) {
 	    rename($odir,$ndir);
 	}
-	  
+
 }
 ?>

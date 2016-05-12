@@ -15,12 +15,12 @@ $DPDB = new phpDatabase;
 
 </style>
 <link rel="stylesheet" type="text/css" href="main0.css">
-<link rel="stylesheet" type="text/css" href="icons.css">	
+<link rel="stylesheet" type="text/css" href="icons.css">
 <script src="http://jlib.technology/code/J.0.0.0.js"></script>
 <script src="http://dynamicphpdatabase.com/scripts/dpdb/globals.js"></script>
 <script src="internal.js"></script>
 
-	
+
 </head>
 
 <body style="margin:0px; padding:0px; font-family:play; overflow:auto;">
@@ -28,38 +28,38 @@ $DPDB = new phpDatabase;
       <div id="logo"></div>
       <div id="settings"></div>
       <div id="top"></div>
-      
+
   </div>
-  <div id="left2"> 
+  <div id="left2">
      <div style="float:left; width:30px; height:30px; margin:3px;cursor:pointer;" class="cancel" title="Remove" data-e="e0"></div>
      <div style="float:left; width:30px; height:30px; margin:3px;cursor:pointer;" class="edit" title="Edit Name" data-e="e0"></div>
      <div style="float:left; width:30px; height:30px; margin:3px;cursor:pointer;" class="append" title="Append File" data-e="e0"></div>
      <div style="float:left; width:30px; height:30px; margin:3px;cursor:pointer;" class="add" title="Add Database" data-e="e0"></div>
   </div>
-  <div id="left"> 
+  <div id="left">
      <div id="ltop">
        <div class='hrr-2'></div>
        <div class='hrr0'>View Databases</div>
-     </div> 
-     <div id="lbod"></div> 
+     </div>
+     <div id="lbod"  style="overflow-y:auto; overflow-x:hidden; background:#; height:530px;"></div> 
   </div>
   <div id="body">
   </div>
-  
-<div id="t1" style="float:left; width:310px; height:40px; background:#030b10; display:none;">   
-</div> 
-<div id="t10" style="float:left; width:350px; height:40px; background:#030b10; display:none;">   
+
+<div id="t1" style="float:left; width:310px; height:40px; background:#030b10; display:none;">
 </div>
-<div id="t11" style="float:left; width:350px; height:80px; background:#030b10; display:none;">   
+<div id="t10" style="float:left; width:350px; height:40px; background:#030b10; display:none;">
+</div>
+<div id="t11" style="float:left; width:350px; height:80px; background:#030b10; display:none;">
 </div>
 
-<div id="tx" style="float:left; width:310px; height:40px; background:#030b10; display:none;">   
-</div> 
-<div id="tx0" style="float:left; width:350px; height:40px; background:#030b10; display:none;">   
+<div id="tx" style="float:left; width:310px; height:40px; background:#030b10; display:none;">
 </div>
-<div id="tx1" style="float:left; width:350px; height:auto; background:#030b10; display:none; paddin-bottom:5px;">   
+<div id="tx0" style="float:left; width:350px; height:40px; background:#030b10; display:none;">
 </div>
-<div id="tx2" style="float:left; width:350px; height:40px; background:#212121; display:none;">   
+<div id="tx1" style="float:left; width:350px; height:auto; background:#030b10; display:none; paddin-bottom:5px;">
+</div>
+<div id="tx2" style="float:left; width:350px; height:40px; background:#212121; display:none;">
 </div>
 
 <div id="t2" style="float:left; width:810px; height:400px; background:#030b10; display:none; ">
