@@ -377,7 +377,7 @@ if(isset($_POST["edit_array"])){
 				$DPDB->CHANGE(trim($_POST["eindex"]),trim($_POST["edit"]),$type);
 			}else{
 			   $type = trim($_POST["edit_type"]);
-			   //$DPDB->CHANGE(trim($_POST["val"]),trim($_POST["edit"]),$type);	
+			   $DPDB->CHANGE(trim($_POST["val"]),trim($_POST["edit"]),$type);	
 			}
 		}
 		//*/
@@ -418,7 +418,7 @@ if(isset($_POST["check_secure"])){
 		$DPDB->Array = SECURE_ARRAY3;
 		$DPDB->ADD(array(0),array(ADR2));
 		setcookie("HOST", ADR2, time() + (86400 * 0.5), "/");	
-		echo "YES";
+		echo "YES-*".ADR2;
 	}else{
 	    echo "NO";	
 	}

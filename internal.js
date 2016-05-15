@@ -5,21 +5,21 @@ $j().pageSet(function() {
 	$j("#body").enhance({reflect:false, shadow:"spread5", border:25, percent:0, radius:false, rest:"darker+", inset:true})
 	$j(".hrr0").enhance({reflect:false, shadow:"spread5", border:25, percent:20, radius:false, rest:"darker+"}).setStyle("height","30px").
 	setStyle("margin-bottom","1px")
-	var cok = $j().getCookie("HOST");
-	
+	var cok = localStorage.HOST;
+
 	$j().ASYNCPOST("ajax_.php", {get_secure2:true, cookie:cok}, function(dats){
 		if(dats[0].trim() == "YES"){
 			setTimeout(function(){
 				$j().ASYNCPOST("ajax_.php", {delete_credential:true}, function(dats){})
 			},1000*60*15)
 		function GET(v){
-			
+
 			//var em = $j("input").embedded()sdf[sdf.length - 1]
 			var sdf = v.split("/");
 			$j(".hrr-2").embed("viewing: <b>"+v+"</b>")
 			DB = v
 			$j().ASYNCPOST("ajax_.php", {database:v}, function(dat){
-				
+
 				if(v.indexOf(".php") == v.lastIndexOf(".php")){
 					if(v.indexOf(".php") > 0){
 						//alert(dat)
@@ -28,7 +28,7 @@ $j().pageSet(function() {
 						$j("#body").embed("")
 						for(var i = 0; i < sp.length; i++){
 							//alert(sp[i])
-							sep = sp[i].split("-*") 
+							sep = sp[i].split("-*")
 							//alert(sep.length)
 							for(var x = 0; x < sep.length; x++){
 								se = sep[x].split(",*")
@@ -46,13 +46,13 @@ $j().pageSet(function() {
 									$j("#n"+i+"-"+x).affix("end","<div style='float:right; width:px; height:20px; margin:8px 10px 3px 3px; font-size:12px;'"+
 									" data-n='"+se+"'></div>");
 								}
-								
-								
+
+
 								var q = 0;
-								for(var y = 0; y < se.length; y++){	
+								for(var y = 0; y < se.length; y++){
 									s = se[y].split(",")
 									var mod = q % 11;
-									
+
 									if(i == 1){
 										if(mod == 0){
 										   $j("#"+x).affix("end","<div class='shell'></div>")
@@ -61,9 +61,9 @@ $j().pageSet(function() {
 									   $j("#"+x).affix("end","<div class='hrr3' id='"+i+"-"+x+"-"+y+"'></div>")
 									   $j("#"+i+"-"+x+"-"+y).affix("end","<div class='hrr4' data-type='index' data-n='0-"+x+"'>"+s+"</div>")
 									   q++
-									} 
-									if(i == 2){	
-									   //alert("#"+i+"-"+x+"-"+y)							   
+									}
+									if(i == 2){
+									   //alert("#"+i+"-"+x+"-"+y)
 									   $j("#1-"+x+"-"+y).affix("end","<div class='hrr4i' data-typ='' data-n='0-"+x+"' data-m='"+x+"-"+y+"'>"+s+"</div>")
 									}
 								}
@@ -78,45 +78,45 @@ $j().pageSet(function() {
 							clicked2 = false
 							e.stopPropagation()
 							if($j(this).attribute("title") == "Remove"){
-								var n = $j(this).attribute("data-n");	
+								var n = $j(this).attribute("data-n");
 							   if (confirm("Are you sure you want to delete "+n+"?") == true) {
 									  $j().ASYNCPOST("ajax_.php", {delete_array:n,D:DB}, function(dat){
 										  //alert(dat)
 										  GET(DB)
 										  //DB = dat[0]
 									  })
-							   } 
+							   }
 							}
-							
+
 							if($j(this).attribute("title") == "Edit"){
 								var n = $j(this).attribute("data-n");
-								$j("?edit1").embed("")						
-								$j("?edit1").embed(n.trim())						
+								$j("?edit1").embed("")
+								$j("?edit1").embed(n.trim())
 								$j("#t10").WINDOW(WOH,$j(this),function(){
 									if(clicked2 == false){
 										$j().ASYNCPOST("ajax_.php", $j("#t10").sequence({D:DB, edit_array_name:n}), function(dat){
 											//alert(dat)
 											GET(DB)
 											clicked2 = true;
-										})	
+										})
 									}
 								})
 							}
 							if($j(this).attribute("title") == "Append"){
-								var n = $j(this).attribute("data-n");						
-								//$j("?append").embed(n.trim())	
+								var n = $j(this).attribute("data-n");
+								//$j("?append").embed(n.trim())
 								$j("#t11").WINDOW(WOH,$j(this),function(){
 									if(clicked2 == false){
 										$j().ASYNCPOST("ajax_.php", $j("#t11").sequence({D:DB, append_array:n}), function(dat){
 											//alert(dat)
 											GET(DB)
 											clicked2 = true;
-										})	
+										})
 									}
 								})
 							}
 						})
-						
+
 						$j(".hrr3[a]").after("mouseenter",function(){
 							BUTTON_HOVER_($j(this))
 						}).after("mouseleave",function(){
@@ -130,7 +130,7 @@ $j().pageSet(function() {
 							$j("?eindex").embed("")
 							$j("?edit").embed("")
 							$j("?edit").embed($j(this).embedded())
-							var n = $j(this).attribute("data-n");	
+							var n = $j(this).attribute("data-n");
 							var va = $j(this).embedded()
 							var nx = $j("#n"+n+"[0]").embedded()
 							var idx = $j("#1-"+$j(this).attribute("data-m")+"[0]").embedded()
@@ -139,45 +139,45 @@ $j().pageSet(function() {
 							$j("?edit_array").embed(nx)
 							$j("?edit_type").embed(inx)
 							$j("?eindex").embed(idx)
-											
+
 							//$new_test = array("0"=>"new/test1","1"=>"new/test1","2"=>"new/test1","3"=>"new/test1","4"=>"new/test1","5"=>"new/test1","6"=>"new/test1",);
 							$j("#t1").WINDOW(WOH,$j(this),function(){
 								if(clicked3 == false){
 									$j().ASYNCPOST("ajax_.php", $j("#t1").sequence({D:DB}), function(dat){
 										GET(DB)
 										clicked3 = true;
-									})	
+									})
 								}
 							})
 						})
-						
+
 					}else{
 						var sp = dat[0].split("-*")
 						var sep = []
 						$j("#lbod").embed("")
-						
+
 						for(var i = 0; i < sp.length; i++){
-							sep[i] = sp[i].split(",*") 
+							sep[i] = sp[i].split(",*")
 							if(i == 0){
-								se = sep[i].toString()	
+								se = sep[i].toString()
 								se = se.split(",")
 								if(se != " " && se != "" && se !== undefined){
 									$j("#lbod").affix("end","<div class='hrr-1'>Data files</div>")
-								}					  
-								for(var x = 0; x < se.length; x++){	
-									if(se[x] != " " && se[x] != ""){						  
+								}
+								for(var x = 0; x < se.length; x++){
+									if(se[x] != " " && se[x] != ""){
 									   $j("#lbod").affix("end","<div style='cursor:pointer;' class='hrr-x'>"+se[x]+"</div>")
 									}
 								}
 							}
 							if(i == 1){
-								se = sep[i].toString()	
-								se = se.split(",")	
+								se = sep[i].toString()
+								se = se.split(",")
 								if(se != " " && se != "" && se !== undefined){
 									$j("#lbod").affix("end","<div class='hrr-1'>Databases</div>")
 								}
-								for(var x = 0; x < se.length; x++){	
-									if(se[x] != " " && se[x] != ""){							  
+								for(var x = 0; x < se.length; x++){
+									if(se[x] != " " && se[x] != ""){
 									   $j("#lbod").affix("end","<div style='cursor:pointer;' class='hrr-x'>"+se[x]+"</div>")
 									}
 								}
@@ -189,8 +189,8 @@ $j().pageSet(function() {
 							BUTTON_HOVER_($j(this))
 						}).after("mouseleave",function(){
 							BUTTON_HOVER_0($j(this))
-						}).after("click",function(){				
-							var t = $j(this).embedded()	
+						}).after("click",function(){
+							var t = $j(this).embedded()
 							var em = DB//$j("?database").embedded()
 							//alert(em.indexOf(".php")+" > 0 && "+v.indexOf(".php")+" > 0")
 							if(em.indexOf(".php") > 0){
@@ -214,24 +214,24 @@ $j().pageSet(function() {
 							}else{
 								var nt = em;
 							}
-							
+
 							$j("?database").embed(nt)
-							GET(nt)	
-							//alert(t)		
+							GET(nt)
+							//alert(t)
 						})
 					}
 				}else{
-					
+
 				}
-				
-				
+
+
 			})
 		}
-		
-	//============================================================================================================================================	
+
+	//============================================================================================================================================
 		$j("#top").affix("end","<input type='text' placeholder='Database' name='database'>")
 		$j("#adddb").affix("end","<input type='text' placeholder='Create Database' name='adddb'>")
-		
+
 		$j("#t1").affix("end","<input type='text' placeholder='Edit' name='edit'>")
 		$j("#t1").affix("end","<input type='hidden' placeholder='Edit' name='val'>")
 		$j("#t1").affix("end","<input type='hidden' placeholder='Edit' name='edit_type'>")
@@ -240,7 +240,7 @@ $j().pageSet(function() {
 		$j("#t10").affix("end","<input type='text' placeholder='Edit' name='edit1'>")
 		$j("#t11").affix("end","<input type='text' placeholder='Index' name='index'>")
 		$j("#t11").affix("end","<input type='text' placeholder='Value' name='value'>")
-		
+
 		$j("#tx").affix("end","<input type='text' placeholder='Edit' name='editx'>")
 		$j("#tx0").affix("end","<input type='text' placeholder='Edit' name='editx1'>")
 		$j("#tx1").affix("end","<input type='text' placeholder='File Name' name='file'>")
@@ -248,21 +248,21 @@ $j().pageSet(function() {
 		$j("#tx1").affix("end","<input type='number' placeholder='How many values?' name='number' min='1' max='20'>")
 		$j("#tx2").affix("end","<input type='text' placeholder='Create Database' name='adddb2'>")
 		//$j("#tx1").affix("end","<input type='text' placeholder='Value' name='valuex'>")
-		
+
 		$j("input").setStyle("width","95%").setStyle("margin-left","2.5%").
 		enhance({reflect:true, shadow:40, border:10, percent:5, radius:5, rest:"darker+", inset:true}).
 		setStyle("padding-left","10px").setStyle("height","33px").setStyle("margin-top","5px")
-		
+
 	//=====================================================================================================================================
 		var vir = 1;
 		function STEP(vi){
-			if(vi <= 20 && vir == vi){			    		
+			if(vi <= 20 && vir == vi){
 				$j("#tx1").affix("end","<input type='text' placeholder='Index "+vi+"' name='indexx"+vi+"'>")
 				$j("#tx1").affix("end","<input type='text' placeholder='Value "+vi+"' name='valuex"+vi+"'>")
 				$j("?valuex"+vi).setStyle("width","45%").setStyle("margin-left","2.5%").
 				enhance({reflect:true, shadow:40, border:10, percent:5, radius:5, rest:"darker+", inset:true}).
 				setStyle("padding-left","10px").setStyle("height","30px").setStyle("margin-top","5px").setStyle("background","#c4e1f2")
-				
+
 				$j("?indexx"+vi).setStyle("width","45%").setStyle("margin-left","2.5%").
 				enhance({reflect:true, shadow:40, border:10, percent:5, radius:5, rest:"darker+", inset:true}).
 				setStyle("padding-left","10px").setStyle("height","30px").setStyle("margin-top","5px")
@@ -270,7 +270,7 @@ $j().pageSet(function() {
 				ts = parseFloat(ts) + 35
 				var ts0 = $j("#tx1<1").trueStyle("width")
 				ts0 = parseFloat(ts0) * 2
-				
+
 				if(parseInt(vi) <= 10){
 					$j("#tx1<1").setStyle("height",ts+"px")
 				}else if(parseInt(vi) == 11){
@@ -284,15 +284,15 @@ $j().pageSet(function() {
 					$j("@name=indexx%").setStyle("width","22%")
 				}
 				vir++
-				
+
 			}else if(vi <= 20 && vi < vir){
 				var a = $j().sequence("array",$j("#tx1[a]"))
 				var as = a[1].toString()
 				var al = as.split(",").length
 				//alert(as.split(",").length)
-				if(al > 3){				
+				if(al > 3){
 					var nvi = vi + 1
-					$j("#tx1["+(al - 1)+","+(al - 2)+"]").detach()				
+					$j("#tx1["+(al - 1)+","+(al - 2)+"]").detach()
 					vir--
 				}
 			}
@@ -301,34 +301,34 @@ $j().pageSet(function() {
 			var vi = $j(this).embedded()
 			//setTimeout(function(){
 			   STEP(vi)
-			//},200)		
+			//},200)
 		}).after("focusout",function(e){
 			var vi = $j(this).embedded()
 			//alert(vi+ " = "+ vir)
 			if(vi > vir){
 				for(var i = 1; i <= vi; i++){
-					STEP(i)		
+					STEP(i)
 				}
 			}else{
 				for(var i = vir; i >= vi; i--){
-					STEP(i)		
+					STEP(i)
 				}
 			}
 		})
-		
-		
-	//=====================================================================================================================================	
-		
+
+
+	//=====================================================================================================================================
+
 		$j("?database").after("keydown",function(e){
 			if(e.which == 13){
 				var v = $j(this).embedded()
 				if(v != "" && v != " "){
 				  var el = $j(this)
-				  GET(v)		  
-				}	
+				  GET(v)
+				}
 			}
 		})
-		
+
 	//==================================================================================================
 	var clicked = false, clicked1 = false, clicked2 = false, clicked3 = false, clicked4 = false;
 		$j("@data-e=e0").after("mouseenter",function(){
@@ -340,7 +340,7 @@ $j().pageSet(function() {
 			if(DB === undefined){
 				DB = "../DPDB"
 			}
-			
+
 			e.stopPropagation()
 			if($j(this).attribute("title") == "Remove"){
 				if(DB.trim() != "../DPDB" || DB.trim() != "DPDB"){
@@ -363,7 +363,7 @@ $j().pageSet(function() {
 								GET(sd)
 								//DB = dat[0]
 							})
-					 } 
+					 }
 				}
 			}
 			var db = DB.split("/")
@@ -371,8 +371,8 @@ $j().pageSet(function() {
 				if(DB.trim() != "../DPDB"){
 					clicked = false;
 					var d = db[db.length - 1].split(".")
-					$j("?editx1").embed("")									
-					$j("?editx1").embed(d[0])						
+					$j("?editx1").embed("")
+					$j("?editx1").embed(d[0])
 					$j("#tx0").WINDOW(WOH,$j(this),function(){
 						if(clicked == false){
 							$j().ASYNCPOST("ajax_.php", {edit_database:$j("?editx1").embedded(),D:DB}, function(dat){
@@ -388,16 +388,16 @@ $j().pageSet(function() {
 			}
 			if($j(this).attribute("title") == "Append File"){
 				clicked1 = false;
-				var n = $j(this).attribute("data-n");						
+				var n = $j(this).attribute("data-n");
 				//$j("?append").embed(n.trim())
 				//alert(DB)
-				
+
 				if(DB.search(".php") > 0){
 					$j("?file").embed("")
 					$j("?file").embed(DB)
 					$j("?file").setStyle("opacity","0.5").disabled(true)
 				}else{
-					
+
 				}
 				$j("#tx1").WINDOW(WOH,$j(this),function(){
 					if(clicked1 == false){
@@ -405,11 +405,11 @@ $j().pageSet(function() {
 							//alert(dat)
 							GET(DB)
 							clicked1 = true;
-						})	
+						})
 					}
 				})
 			}
-			
+
 			if($j(this).attribute("title") == "Add Database"){
 				clicked4 = false
 				function GETD0(v){
@@ -420,7 +420,7 @@ $j().pageSet(function() {
 							GETDD()
 							GET(DB)
 						})
-					 } 
+					 }
 				}
 				$j("#tx2").WINDOW(WOH,$j(this),function(){
 					//alert($j("?adddb2").embedded())
@@ -431,8 +431,8 @@ $j().pageSet(function() {
 				})
 			}
 		})
-		
-	//=================================================================================================	
+
+	//=================================================================================================
 		function GETDD(){
 			$j().ASYNCPOST("ajax_.php", {get_database2:true}, function(dat){
 					var sp = dat[0].split("-*")
@@ -449,17 +449,17 @@ $j().pageSet(function() {
 						BUTTON_HOVER_($j(this))
 					}).after("mouseleave",function(){
 						BUTTON_HOVER_0($j(this))
-					}).after("click",function(){				
+					}).after("click",function(){
 						  var t = $j(this).embedded()
-						  $j("?database").embed("")						  
+						  $j("?database").embed("")
 						  $j("?database").embed(t)
-						  GET(t)	
+						  GET(t)
 						  //$j("#t2").OVERLAY("close")
-						  $j("#t2").WINDOW("close")	
+						  $j("#t2").WINDOW("close")
 					})
 			})
 		}
-		
+
 		$j(".hrr0").after("mouseenter",function(){
 			BUTTON_HOVER_($j(this))
 		}).after("mouseleave",function(){
@@ -469,12 +469,12 @@ $j().pageSet(function() {
 			e.stopPropagation()
 			/*
 			$j("#t2").WINDOW(WOH,$j(this),function(){
-				//$j("?edit").embedded()	
+				//$j("?edit").embedded()
 			})
 			*/
-			GETDD()		
+			GETDD()
 		})
-		
+
 		function GETD(v){
 			$j("?adddb").embed("")
 			 if (confirm("Are you sure?") == true) {
@@ -482,23 +482,23 @@ $j().pageSet(function() {
 					//alert(dat)
 					GETDD()
 				})
-			 } 
+			 }
 		}
-		
+
 		$j("?adddb").after("keydown",function(e){
 			if(e.which == 13){
 				var v = $j(this).embedded()
 				if(v != "" && v != " "){
 				  var el = $j(this)
-				  GETD(v)		  
-				}	
+				  GETD(v)
+				}
 			}
 		}).setStyle("width","93.5%")
-	
+
 		}else{
-		   $j().navTo("secure")	
+		   $j().navTo("secure")
 		}
-	
+
 	})
-		
+
 })
