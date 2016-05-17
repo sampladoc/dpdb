@@ -1,16 +1,4 @@
 <?php
-require_once('../DPDB.php');
-
-$DPDB = new phpDatabase;
-
-$DPDB->directory = "charge";
-$DPDB->database = "data";
-$DPDB->level = 1;
-//$DPDB->LISTD();
-$A = $DPDB->return_;
-
-//print_r($A[1]);
-//$DPDB->set("array","hours");
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -103,8 +91,8 @@ $A = $DPDB->return_;
 }
 </style>
 
-<script src="http://jlib.technology/code/J.0.0.0.js"></script>
-<script src="http://dynamicphpdatabase.com/scripts/dpdb/globals.js"></script>
+<script src="../J.js"></script>
+<script src="../globals.js"></script>
 <script>
 $j().pageSet(function() {
 	$j().ASYNCPOST("../ajax_.php", {get_secure:true}, function(dat){
@@ -120,10 +108,12 @@ $j().pageSet(function() {
 		}).after("mouseleave",function(){
 			BUTTON_HOVER_0($j(this))
 		}).after("click",function(e){
-			ran = $j().randomized(16)			
+			ran = $j().randomized(16)		
 			if(dat[0].trim() == "YES"){				
 				$j().ASYNCPOST("../ajax_.php", $j("#body").sequence({check_secure:true}), function(dat1){
-					if(dat1[0].trim() == "YES"){	
+			        var spd = dat1[0].trim().split("-*")
+		            localStorage.setItem('HOST', spd[1]);	
+					if(spd[0].trim() == "YES"){	
 					   $j().navTo("../")
 					}
 				})
@@ -131,7 +121,9 @@ $j().pageSet(function() {
 				if($j("?password").embedded() == $j("?password2").embedded()){
 					$j().ASYNCPOST("../ajax_.php", $j("#body").sequence({set_secure:true, fingerprint:ran}), function(dat2){
 						$j().ASYNCPOST("../ajax_.php", $j("#body").sequence({check_secure:true}), function(dat3){
-							if(dat1[0].trim() == "YES"){	
+							var spd = dat1[0].trim().split("-*")
+							localStorage.setItem('HOST', spd[1]);	
+							if(spd[0].trim() == "YES"){		
 					            $j().navTo("../")
 					        }
 						})
@@ -159,8 +151,8 @@ $j().pageSet(function() {
 <body style="margin:0px; padding:0px; font-family:play; overflow:auto; background:#030b10;">
   <div id="Ttop"><div id="logo"></div><div id="top"></div></div>
   <div id="body">
-     <input type="text" placeholder="User" name="user" />
-     <input type="password" placeholder="Password" name="password" />
+     <input type="text" placeholder="User" name="user" value="dpdb"/>
+     <input type="password" placeholder="Password" name="password" value="dpdb"/>
      <input type="password" placeholder="Confirm Password" name="password2" />
      <div id="send">ENTER</div>
   </div>
